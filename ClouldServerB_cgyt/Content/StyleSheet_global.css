@@ -44,3 +44,25 @@
     height: 100%;
     float:right;
 }
+
+.areaSel {
+    width:100%;
+    height:33%;
+}
+
+.stateAndControl{
+    width:100%;
+    height:50%;
+}
+
+.stateDisp{
+    width:80%;
+    height:100%;
+    float:left;
+}
+
+.ctrl {
+    width: 20%;
+    height: 100%;
+    float:right;
+}
