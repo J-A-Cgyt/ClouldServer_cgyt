@@ -33,3 +33,28 @@ function displayDIV(boolean) {  //存在的问题 如何和后端进行数据交
         document.getElementById("objectx").style.display = "";
     }
 }
+
+function refreshChart() {
+    var ctxx = document.getElementById("chartThird");
+    var chart3 = new Chart(ctxx, {
+        type: 'line',
+        data: {
+            labels: ["0", "10", "20", "30", "40", "50", "60", "70", "80", "90"],
+            datasets: [{
+                label: "实时产量/10s",
+                backgroundColor: 'rgba(233,132,29,0.2)',
+                borderColor: 'rgb(233,132,29)',
+                data: [32, 53, 44, 59, 36, 48, 53, 48, 40, 57],
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+}

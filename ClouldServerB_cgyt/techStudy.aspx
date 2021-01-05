@@ -71,7 +71,7 @@
             </ContentTemplate>
         </asp:UpdatePanel>   
         </div>
-        <div id="chartjsStudy" style="width:30%; height:400px;">
+        <div id="chartjsStudy" style="float:left; width:40%; height:400px;">
             <h3>这是一个用来学习Chart.js的div 如果样子还可以就当作主要的图表显示组件</h3> <br />
             <canvas id="myChart" width="30" height="20"></canvas> 
             <!--
@@ -130,12 +130,12 @@
 
                     //数据集
                     data: {
-                        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+                        labels: ["0", "3", "6", "9", "12", "15", "18"],
                         datasets: [{
                             label: "数据集",
                             backgroundColor: 'rgba(255,99,132,0.2)',
                             borderColor: 'rgb(255,99,132)',
-                            data:[25,42,54,12,34,84,21],
+                            data:[25,42,54,32,34,49,21],
                         }]
                     },
 
@@ -143,10 +143,13 @@
                     options: { }
                 });
             </script>
-            <hr />
+        </div>
+
+        <div style="float:right; width:60%; height:400px">
+            <h4>这是用来学习chart.js的第二个div 合理利用一下空间 在右边</h4>
             <canvas id="chartThird" width="4" height="2" ></canvas>
-
-
+            <script> refreshChart(); </script>
+            <p> 可以在自建的js中调用chart.js画图通过 </p>
         </div>
     </form>
 </body>
