@@ -117,7 +117,7 @@
                     }
                 });
             </script>
-
+            <hr />
             <canvas id="chartSecond" width="3" height="2"></canvas>
             <!--若script内未定义函数，则其定义的变量是全局可见的 在不同的script中按照输入的先后顺序应该能够访问对应的变量
                 由不同变量绘制的canvas可以同时存在且不会互相替代 长宽比设定仍然有效 但现在看来，好的布局方式仍旧应该是table或者div一一对应
@@ -143,7 +143,7 @@
                     options: { }
                 });
             </script>
-
+            <hr />
             <canvas id="chartThird" width="4" height="2" ></canvas>
 
 
