@@ -58,3 +58,60 @@ function refreshChart() {
         }
     });
 }
+
+function backPlatDataChart(arrayT) {
+
+    var ctx4 = document.getElementById("chartBackCan");
+    var chart4 = new Chart(ctx4, {
+        type: 'line',
+        data: {
+            labels: ["0", "10", "20", "30", "40", "50", "60", "70", "80", "90"],
+            datasets: [{
+                label: "实时产量/10s",
+                backgroundColor: 'rgba(33,232,129,0.2)',
+                borderColor: 'rgb(23,232,129)',
+                data: arrayT,
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+}
+
+function loadXMLDoc() {
+    var xmlhttp;
+    var txt, x, i;
+
+    var arrayT = new Array(); //数组试试
+
+    if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest();
+    }
+    else {
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function () {  //获取xml之后的动作必须在这个函数内执行 否则没动作
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            //document.getElementById("").innerHTML=xmlhttp.responseText;
+            xmlDoc = xmlhttp.responseXML;
+            txt = "";
+            x = xmlDoc.getElementsByTagName("x");
+            for (i = 0; i < x.length; i++) {
+                txt = txt + x[i].childNodes[0].nodeValue + "&nbsp";
+                arrayT[i] = x[i].childNodes[0].nodeValue;
+            }
+            document.getElementById("outPut").innerHTML = txt;
+            backPlatDataChart(arrayT);
+        }
+    }
+
+    xmlhttp.open("GET", "chartData/dataToShow.xml", true); //是能拿到数据 但是如何解析？
+    xmlhttp.send();
+}
