@@ -66,3 +66,12 @@
     height: 100%;
     float:right;
 }
+
+.globalChart{
+    width:640px;
+    height:360px;
+    border:solid;
+    border-width:thin;
+    border-color:aquamarine;
+    background-color:aquamarine;
+}

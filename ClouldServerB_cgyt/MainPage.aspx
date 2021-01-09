@@ -84,16 +84,17 @@
                                     <div class="stateDisp">
                                         全局状态显示区<br />
                                         各种图表
-                                        <div id ="state_global_chart" runat="server" style="display:none">
+                                        <div id ="state_global_chart" class="globalChart" runat="server" style="display:none">
                                             全局状态监控图表 设备状态
+                                            <canvas id="canvas_Global_State" width="16" height="9"></canvas>
                                         </div>
-                                        <div id ="plan_global_chart" runat="server" style="display:none">
+                                        <div id ="plan_global_chart" class="globalChart" runat="server" style="display:none">
                                             全局计划监控图表 生产计划
                                         </div>
-                                        <div id ="resource_global_chart" runat="server" style="display:none">
+                                        <div id ="resource_global_chart" class="globalChart" runat="server" style="display:none">
                                             全局资源监控图表 资源状态
                                         </div>
-                                        <div id ="except_global_chart" runat="server" style="display:none">
+                                        <div id ="except_global_chart" class="globalChart" runat="server" style="display:none">
                                             全局异常监控图表 异常监控
                                         </div>
                                     </div>
