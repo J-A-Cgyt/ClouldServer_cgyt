@@ -17,18 +17,23 @@ namespace ClouldServerB_cgyt
         protected void treeView_navigate_SelectedNodeChanged(object sender, EventArgs e)
         {   //更改内容区域显示的内容
             int selectedIndex = int.Parse(treeView_navigate.SelectedValue);
-            if (selectedIndex < 10) {
+            if (selectedIndex < 10)
+            {
                 Contents.ActiveViewIndex = selectedIndex - 1;
                 treeView_navigate.CollapseAll();
                 treeView_navigate.SelectedNode.Expand();
             }
-            else{
+            else
+            {
                 Contents.ActiveViewIndex = selectedIndex / 10 - 1;
-                if (Contents.ActiveViewIndex == 0) {
+                if (Contents.ActiveViewIndex == 0)
+                {
                 }
-                else if (Contents.ActiveViewIndex == 1) {
+                else if (Contents.ActiveViewIndex == 1)
+                {
                 }
-                else if (Contents.ActiveViewIndex == 2) {
+                else if (Contents.ActiveViewIndex == 2)
+                {
                     int leafIndex = selectedIndex % 10;
                     switch (leafIndex)
                     {

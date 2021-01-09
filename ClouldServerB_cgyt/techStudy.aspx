@@ -18,14 +18,18 @@
     <!--script放在哪无所谓 主要是调用函数的那个元素 似乎有些要求 虽然调试通过，但是还不知原因是啥 两种形式都行啊 也不知道为啥刚才不行-->
     <script>
         document.write("<h2>这是通过script向html页写入的内容</h2>");
-    </script> 
+    </script>     
+    <!--
+        看来写入的位置在form之前的body中,即body的最前端 注意 直接执行的script并没有放在某个函数中
+        也就是说 head标签内的script会先于body加载执行 此时document中其实并没有可供显示和操作的element
+     -->
     
-    <!--看来写入的位置在form之前的body中,即body的最前端 注意 直接执行的script并没有放在某个函数中-->
     <script src="Scripts/selfJsCgyt.js"></script>
     <!--这一句导入了文件中写的script内容 所以里面可以啥都没-->
 
     <script src="Scripts/Chart.js"></script> <!--此句导入chart.js的库--> 
     <!--head部分似乎还没有绘制完html元素，在此处使用getelementById会找不到元素-->
+
 </head>
 
 <body>
@@ -48,6 +52,7 @@
             <input id="Button5" type="button" value="JS语法学习" onclick="jsGrammar()" /> &nbsp  <br /> <br />
             <input id="Button6" type="button" value="隐藏DIV" onclick="displayDIV(true)"/> &nbsp 
             <input id="Button7" type="button" value="显示DIV" onclick="displayDIV(false)"/> &nbsp 
+            <input id="Button8" type="button" value="AJAX测试" onclick="loadXMLDoc()"/> &nbsp 
 
         </div>
 
@@ -71,83 +76,112 @@
             </ContentTemplate>
         </asp:UpdatePanel>   
         </div>
-        <div id="chartjsStudy" style="width:30%; height:400px;">
-            <h3>这是一个用来学习Chart.js的div 如果样子还可以就当作主要的图表显示组件</h3> <br />
-            <canvas id="myChart" width="30" height="20"></canvas> 
-            <!--
+        <div style="height:900px">
+            <div id="chartjsStudy" style="float:left; width:40%; height:400px;">
+                <h3>这是一个用来学习Chart.js的div 如果样子还可以就当作主要的图表显示组件</h3> <br />
+                <canvas id="myChart" width="30" height="20"></canvas> 
+                <!--
                 canvas的初始长宽只影响绘制图表后的长宽比 实际的长宽会继承canvas父标签的长宽 图表不会遮挡已存在的元素 这些特性可以在配置选项（option）中更改
                 关联网址 https://chartjs.bootcss.com/docs/general/responsive.html 也建议使用专门的外层容器包裹canvas并实现尺寸调整
                 -->
-            <script type="text/javascript">
-                var ctx = document.getElementById("myChart");
-                var myChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-                        datasets: [{
-                            label: '# of Votes',
-                            data: [12, 19, 3, 5, 2, 3],
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(255,99,132,1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero:true
-                                }
+                <script type="text/javascript">
+                    var ctx = document.getElementById("myChart");
+                    var myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                            datasets: [{
+                                label: '# of Votes',
+                                data: [12, 19, 3, 5, 2, 3],
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(255,99,132,1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)'
+                                ],
+                                borderWidth: 1
                             }]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            }
                         }
-                    }
-                });
-            </script>
-
-            <canvas id="chartSecond" width="3" height="2"></canvas>
-            <!--若script内未定义函数，则其定义的变量是全局可见的 在不同的script中按照输入的先后顺序应该能够访问对应的变量
+                    });
+                </script>
+                <hr />
+                <canvas id="chartSecond" width="3" height="2"></canvas>
+                <!--若script内未定义函数，则其定义的变量是全局可见的 在不同的script中按照输入的先后顺序应该能够访问对应的变量
                 由不同变量绘制的canvas可以同时存在且不会互相替代 长宽比设定仍然有效 但现在看来，好的布局方式仍旧应该是table或者div一一对应
                 -->
-            <script>
+                <script>
                 var ctx2 = document.getElementById("chartSecond"); //获取要绘制图像的<canvas>元素
-                var chart2 = new Chart(ctx2, {  //将图标绘制在第一个参数所代表的canvas中
-                    //图表类型
-                    type: 'line',
+                    var chart2 = new Chart(ctx2, {  //将图标绘制在第一个参数所代表的canvas中
+                        //图表类型
+                        type: 'line',
 
-                    //数据集
-                    data: {
-                        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
-                        datasets: [{
-                            label: "数据集",
-                            backgroundColor: 'rgba(255,99,132,0.2)',
-                            borderColor: 'rgb(255,99,132)',
-                            data:[25,42,54,12,34,84,21],
-                        }]
-                    },
+                        //数据集
+                        data: {
+                            labels: ["0", "3", "6", "9", "12", "15", "18"],
+                            datasets: [
+                                {
+                                    label: "数据集A",
+                                    backgroundColor: 'rgba(255,99,132,0.2)',
+                                    borderColor: 'rgb(255,99,132)',
+                                    data: [25, 42, 54, 32, 34, 49, 21],
+                                },
+                                {
+                                    label: "数据集B",
+                                    backgroundColor: 'rgba(125,99,162,0.2)',
+                                    borderColor: 'rgb(125,99,162)',
+                                    data: [51, 34, 54, 63, 34, 31, 79],
+                                }
+                            ] //这个方括号里面的元素是不同系列的数据点 可以实现一个网格上画多条线
+                        },
 
-                    //配置选项
-                    options: { }
-                });
+                        //配置选项
+                        options: {}
+                    });
             </script>
-
-            <canvas id="chartThird" width="4" height="2" ></canvas>
-
-
         </div>
+
+            <div style="float:right; width:60%; height:400px">
+                <h4>这是用来学习chart.js的第二个div 合理利用一下空间 在右边</h4>
+                <canvas id="chartThird" width="4" height="2" ></canvas>
+                <script> refreshChart(); </script> <!--可以在外部js文件中定义函数 在html文档的body内任意位置调用-->
+                <p> 可以在自建的js中调用chart.js画图通过 </p>
+            </div>
+        </div>
+        <hr />
+
+        <div id="backPlatVar">
+            <h4> 后台变量获取试验 </h4>
+            <p id="testPra"> 在script中调用试试： </p> <br />
+
+            <input id="chartRefBtn" type="button" value="后台数据获取画图" onclick="loadXMLDoc()" /> <br />
+            <div id="chartBackDiv" style="width:600px;height:400px">
+                <canvas id="chartBackCan" width="3" height="2"></canvas>
+            </div>
+
+            <div id="outPut">
+                用来测试XML读取结果
+            </div>
+        </div>
+
     </form>
 </body>
 </html>
