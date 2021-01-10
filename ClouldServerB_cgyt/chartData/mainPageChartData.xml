@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ChartData>
+  <cake_Global_State>
+    <normal>94.3</normal>
+    <paused>3.4</paused>
+    <fault>2.3</fault>
+  </cake_Global_State> <!--饼图 设备状态 三个数据 正常 暂停 故障 百分比 求和为100%-->
+
+  <line_Global_Plan>
+    <dimention>10k/10ses</dimention>
+    <DataElements id="0">
+      <output>34</output>
+      <passRate>98.5</passRate>
+    </DataElements>
+    <DataElements id="1">
+      <output>29</output>
+      <passRate>99.3</passRate>
+    </DataElements>
+    <DataElements id="2">
+      <output>32</output>
+      <passRate>98.7</passRate>
+    </DataElements>
+    <DataElements id="3">
+      <output>30</output>
+      <passRate>99.4</passRate>
+    </DataElements>
+    <DataElements id="4">
+      <output>28</output>
+      <passRate>99.7</passRate>
+    </DataElements>
+    <DataElements id="5">
+      <output>31</output>
+      <passRate>99.2</passRate>
+    </DataElements>
+    <DataElements id="6">
+      <output>36</output>
+      <passRate>98.9</passRate>
+    </DataElements>
+    <DataElements id="7">
+      <output>35</output>
+      <passRate>99.0</passRate>
+    </DataElements>
+    <DataElements id="8">
+      <output>33</output>
+      <passRate>99.2</passRate>
+    </DataElements>
+    <DataElements id="9">
+      <output>28</output>
+      <passRate>99.6</passRate>
+    </DataElements>
+  </line_Global_Plan> <!--线图 两组数据 每组十个数据点 分别为产量与合格率 实时参数 这个标签最好要带单位参数-->
+
+  <progress_Global_Plan>
+    54
+  </progress_Global_Plan> <!--饼图 生产进度 只有一个数据 百分比-->>
+</ChartData>

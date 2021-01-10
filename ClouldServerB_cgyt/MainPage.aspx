@@ -9,17 +9,23 @@
         主页面的结构样本 
     </title> <!--title被显示在了浏览器的页面处-->
     <link rel="stylesheet" type="text/css" href="~/Content/StyleSheet_global.css"/>
+
+    <script src="Scripts/selfJsCgyt.js"></script>
+    <!--这一句导入了文件中写的script内容 所以里面可以啥都没-->
+
+    <script src="Scripts/Chart.js"></script> <!--此句导入chart.js的库--> 
+    <!--head部分似乎还没有绘制完html元素，在此处使用getelementById会找不到元素-->
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div class="header">
+    <div class="header">
             这里是头
-        </div>
+    </div>
+    <form id="form1" runat="server">
 
-        <!--要实现后台代码的局部更新看来这个是必须要有的-->
+        <!--要实现后台代码的局部更新看来这个是必须要有的 即使有scriptmanager仍然出发了pageload 这就说明局部更新也没啥乱用了-->
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-        <!--放在这里似乎实现了相关的功能，而且保证了CSS的稳定 局部刷新 updatePanel-->
-        <asp:UpdatePanel ID="UpdatePanel1" runat="server"><ContentTemplate>
+        <!--放在这里似乎实现了相关的功能，而且保证了CSS的稳定 局部刷新 updatePanel 暂时把这个东西撤回来吧-->
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server"><ContentTemplate> </ContentTemplate></asp:UpdatePanel>
         <div class="mainbody">
             <div class="navigate">
                 这里是导航区 <br />
@@ -28,9 +34,9 @@
                     <LeafNodeStyle BackColor="Gray" Font-Size="12pt" HorizontalPadding="3px" VerticalPadding="3px" Width="100%" />
                     <Nodes>
                         <asp:TreeNode Text="商务" Value="1">
-                            <asp:TreeNode Text="新建节点" Value="11"></asp:TreeNode>
-                            <asp:TreeNode Text="新建节点" Value="12"></asp:TreeNode>
-                            <asp:TreeNode Text="新建节点" Value="13"></asp:TreeNode>
+                            <asp:TreeNode Text="销售" Value="11"></asp:TreeNode>
+                            <asp:TreeNode Text="订单" Value="12"></asp:TreeNode>
+                            <asp:TreeNode Text="投标" Value="13"></asp:TreeNode>
                         </asp:TreeNode>
                         <asp:TreeNode Text="设计" Value="2">
                             <asp:TreeNode Text="CAD" Value="21"></asp:TreeNode>
@@ -52,7 +58,7 @@
                 </asp:TreeView>
             </div>
             <div class="contents">
-                这里是主要内容 <br />
+                这里是主要内容  不知为何 无法执行在MultiView内的脚本(script)<br />
                 <asp:MultiView ID="Contents" runat="server" ActiveViewIndex="0">
                     <asp:View ID="viewBis" runat="server">
                         <div class="viewdiv">
@@ -86,10 +92,13 @@
                                         各种图表
                                         <div id ="state_global_chart" class="globalChart" runat="server" style="display:none">
                                             全局状态监控图表 设备状态
-                                            <canvas id="canvas_Global_State" width="16" height="9"></canvas>
+                                            <canvas id="cake_Global_State" width="16" height="9"></canvas> <!--饼图 设备状态总览-->
                                         </div>
                                         <div id ="plan_global_chart" class="globalChart" runat="server" style="display:none">
-                                            全局计划监控图表 生产计划
+                                            全局计划监控图表 生产计划  <!--看来这个图的尺寸还是用专属DIV限制吧-->
+                                            <canvas id="line_Global_Plan" width="32" height="9"></canvas> <br /> <!--线图 产量与合格率-->
+                                            <canvas id="progress_Global_Plan" width="32" height="9"></canvas> <!--饼图 生产进度-->                                           
+                                            <!--<script> loadChartFromXML(); </script>-->
                                         </div>
                                         <div id ="resource_global_chart" class="globalChart" runat="server" style="display:none">
                                             全局资源监控图表 资源状态
@@ -160,18 +169,18 @@
                                     工厂信息：区域主控
                                 </div>
                                 <div class="areaSel">
-                                    车间信息：现场主控
+                                    车间信息：现场主控 细化描述：现场主控的管辖范围最大为一个车间，最小为一条生产线 较大规模的车间可以按照任务分别使用多个现场主控进行配合管理
                                 </div>
                             </div>
-                        </div>
-                    </asp:View>
-                </asp:MultiView>
+                        </div>                                  
+                    </asp:View> 
+                </asp:MultiView>  
             </div>
         </div>
-        </ContentTemplate></asp:UpdatePanel> <!--放在这里似乎实现了相关的功能 局部刷新 updatePanel-->
-        <div class="foot">
-            这里是网页的尾部
-        </div>
-    </form>
+         <!--放在这里似乎实现了相关的功能 局部刷新 updatePanel-->                                          
+    </form>    
+    <div class="foot">
+        这里是网页的尾部
+    </div>
 </body>
 </html>

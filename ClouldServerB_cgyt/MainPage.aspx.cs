@@ -11,7 +11,7 @@ namespace ClouldServerB_cgyt
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            int x = 0;
         }
 
         protected void treeView_navigate_SelectedNodeChanged(object sender, EventArgs e)
@@ -78,6 +78,9 @@ namespace ClouldServerB_cgyt
                             plan_area_ctrl.Style["display"] = "";
                             resource_area_ctrl.Style["display"] = "none";
                             except_area_ctrl.Style["display"] = "none";
+
+                            ClientScriptManager clientScriptManager = Page.ClientScript; //倒是顺便验证了后台执行SCRIPT的可行性 一失一得吧 看来无论如何登录信息都得用SESSION保存了
+                            clientScriptManager.RegisterStartupScript(this.GetType(), "", "<script type=\"text/javascript\">loadChartFromXML();</script>");
                             break;
                         case 3:
                             state_global_chart.Style["display"] = "none";

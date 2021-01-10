@@ -115,3 +115,76 @@ function loadXMLDoc() {
     xmlhttp.open("GET", "chartData/dataToShow.xml", true); //是能拿到数据 但是如何解析？
     xmlhttp.send();
 }
+
+
+//mainpage中的chartjs画图----------------------------------------------------------------------------
+
+function loadChartFromXML() {
+    var xmlhttp;
+    var txt, x, y;
+
+    var outputLine = new Array(); //数组试试
+    var passRateLine = new Array(); 
+
+    if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest();
+    }
+    else {
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            xmlDoc = xmlhttp.responseXML;
+            x = xmlDoc.getElementsByTagName("output");
+            y = xmlDoc.getElementsByTagName("passRate");
+            for (i = 0; i < x.length; i++) {
+                outputLine[i] = x[i].childNodes[0].nodeValue;
+                passRateLine[i] = y[i].childNodes[0].nodeValue;
+            }
+            drawDoubleLine(outputLine, passRateLine);
+        }
+    }
+
+    xmlhttp.open("GET", "chartData/mainPageChartData.xml", true); //是能拿到数据 但是如何解析？
+    xmlhttp.send();
+}
+
+function drawDoubleLine(outputLine, passRateLine) {
+    var ctxLGP = document.getElementById("line_Global_Plan");
+
+    var chartLGP = new Chart(ctxLGP, {  //将图标绘制在第一个参数所代表的canvas中
+        //图表类型
+        type: 'line',
+
+        //数据集
+        data: {
+            labels: ["0", "10", "20", "30", "40", "50", "60", "70", "80", "90"],
+            datasets: [
+                {
+                    label: "实时产量",
+                    backgroundColor: 'rgba(225,199,32,0.2)',
+                    borderColor: 'rgb(225,199,32)',
+                    data: outputLine,
+                },
+                {
+                    label: "实时合格率",
+                    backgroundColor: 'rgba(25,129,232,0.2)',
+                    borderColor: 'rgb(25,129,232)',
+                    data: passRateLine,
+                }
+            ] //这个方括号里面的元素是不同系列的数据点 可以实现一个网格上画多条线
+        },
+
+        //配置选项
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+}

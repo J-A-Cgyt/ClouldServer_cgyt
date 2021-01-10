@@ -1,6 +1,11 @@
-﻿body {
+﻿/* 没有加.的是元素选择 即该标签名的基本属性*/
+body {
+    width:inherit;
+    height:1400px;
+    background-color:floralwhite;
 }
 
+/* 加.的是根据 class的值选择的 也称作类选择器 */
 .header{
     width:100%;
     height:50px;
@@ -43,11 +48,14 @@
     width: 40%;
     height: 100%;
     float:right;
+    background-color:aliceblue;
 }
 
 .areaSel {
     width:100%;
     height:33%;
+    border:solid;
+    border-color:coral;
 }
 
 .stateAndControl{
