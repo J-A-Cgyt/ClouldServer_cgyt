@@ -117,11 +117,75 @@ function loadXMLDoc() {
 }
 
 
-//mainpage中的chartjs画图----------------------------------------------------------------------------
+//mainpage中的chartjs画图====================================================================================================
 
-function loadChartFromXML() {
+//状态图绘制----------------------------------------------------------------------------------------
+function loadChartFromXMLA() {
     var xmlhttp;
-    var txt, x, y;
+    var nodeNormal, nodePaused, nodeFault;
+    var normal, paused, fault;
+
+    if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest();
+    }
+    else {
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            xmlDoc = xmlhttp.responseXML;
+
+            nodeNormal = xmlDoc.getElementsByTagName("normal");
+            nodePaused = xmlDoc.getElementsByTagName("paused");
+            nodeFault = xmlDoc.getElementsByTagName("fault");
+
+            normal = nodeNormal[0].childNodes[0].nodeValue;
+            paused = nodePaused[0].childNodes[0].nodeValue;
+            fault = nodeFault[0].childNodes[0].nodeValue;
+
+            drawStatePie(normal, paused, fault);
+        }
+    }
+    xmlhttp.open("GET", "chartData/mainPageChartData.xml", true); //是能拿到数据 但是如何解析？
+    xmlhttp.send();
+}
+
+function drawStatePie(normal, paused, fault) {
+    var ctxCGS = document.getElementById("cake_Global_State");
+
+    var chartCGS = new Chart(ctxCGS, {
+        type: "doughnut",
+
+        data: {
+            datasets: [
+                {
+                    data: [normal, paused, fault],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(224, 162, 35, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(224, 162, 35, 1)'
+                    ]
+                }
+            ],
+
+            labels: ["normal", "paused", "fault"]
+        },
+
+        options:{}
+    })
+}
+
+//计划图绘制----------------------------------------------------------------------------------------
+function loadChartFromXMLB() {
+    var xmlhttp;
+    var progress, x, y;
+    var prog; //计划进度数值
 
     var outputLine = new Array(); //数组试试
     var passRateLine = new Array(); 
@@ -136,13 +200,18 @@ function loadChartFromXML() {
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             xmlDoc = xmlhttp.responseXML;
-            x = xmlDoc.getElementsByTagName("output");
+            //绘制计划监控线图
+            x = xmlDoc.getElementsByTagName("output");  //这个读取好像是可以穿透的
             y = xmlDoc.getElementsByTagName("passRate");
             for (i = 0; i < x.length; i++) {
                 outputLine[i] = x[i].childNodes[0].nodeValue;
                 passRateLine[i] = y[i].childNodes[0].nodeValue;
             }
             drawDoubleLine(outputLine, passRateLine);
+            //绘制进度饼图
+            progress = xmlDoc.getElementsByTagName("progress_Global_Plan");
+            prog = progress[0].childNodes[0].nodeValue;
+            drawProgressPie(prog);
         }
     }
 
@@ -150,6 +219,7 @@ function loadChartFromXML() {
     xmlhttp.send();
 }
 
+    //绘制双线图（计划监控）
 function drawDoubleLine(outputLine, passRateLine) {
     var ctxLGP = document.getElementById("line_Global_Plan");
 
@@ -187,4 +257,129 @@ function drawDoubleLine(outputLine, passRateLine) {
             }
         }
     });
+}
+
+function drawProgressPie(progress) {
+    var ctxPGP = document.getElementById("progress_Global_Plan");
+
+    var chartPGP = new Chart(ctxPGP, {
+        type: 'pie',
+        data: {
+            datasets: [
+                {
+                    data: [progress, 100 - progress],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)']
+                },
+            ],
+
+            labels:["completed","rest"]
+        },
+        options: {
+        }
+    })
+}
+
+//资源图绘制----------------------------------------------------------------------------------------
+function loadChartFromXMLC() {
+    var xmlhttp;
+    var i,j;
+    var rawNode, energyNode;
+    var rawArray = new Array();
+    var energyArray = new Array();
+
+    if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest();
+    }
+    else {
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            xmlDoc = xmlhttp.responseXML;
+
+            rawNode = xmlDoc.getElementsByTagName("raw");
+            energyNode = xmlDoc.getElementsByTagName("energy");
+            for (i = 0; i < rawNode.length; i++) {
+                rawArray[i] = rawNode[i].childNodes[0].nodeValue;
+            }
+            for (j = 0; j < energyNode.length; j++) {
+                energyArray[j] = energyNode[j].childNodes[0].nodeValue;
+            }
+
+            //调用绘制图像的函数
+            drawResourceChart(rawArray, energyArray);
+        }
+    }
+    xmlhttp.open("GET", "chartData/mainPageChartData.xml", true); //是能拿到数据 但是如何解析？
+    xmlhttp.send();
+}
+
+function drawResourceChart(raw,energy) {
+    var ctxBGR = document.getElementById("bar_Global_Resource");
+    var ctxLGR = document.getElementById("line_Global_Resource");
+
+    var chartBGR = new Chart(ctxBGR, {
+        type: "bar",
+        data: {
+            labels: ["资源0", "资源1", "资源2", "资源3", "资源4", "资源5"],
+            datasets: [{
+                label:"资源存量",
+                data: raw,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]           
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    })
+
+    var chartLGR = new Chart(ctxLGR, {
+        type: "line",
+        data: {
+            labels: ["0", "10", "20", "30", "40", "50", "60", "70", "80", "90"],
+            datasets: [{
+                label: "能源消耗",
+                backgroundColor: 'rgba(215,129,22,0.2)',
+                borderColor: 'rgb(215,129,22)',
+                data: energy,
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    })
 }

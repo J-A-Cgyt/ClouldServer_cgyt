@@ -5,6 +5,12 @@ body {
     background-color:floralwhite;
 }
 
+li{
+    height:50px;
+    font-family:'Microsoft YaHei';
+    font-size:14px;
+}
+
 /* 加.的是根据 class的值选择的 也称作类选择器 */
 .header{
     width:100%;
@@ -39,13 +45,13 @@ body {
 }
 
 .contentLeft{
-    width:60%;
+    width:65%;
     height:100%;
     float:left;
 }
 
 .contentRight {
-    width: 40%;
+    width: 35%;
     height: 100%;
     float:right;
     background-color:aliceblue;
@@ -61,6 +67,7 @@ body {
 .stateAndControl{
     width:100%;
     height:50%;
+    background-color:ivory
 }
 
 .stateDisp{
@@ -73,11 +80,12 @@ body {
     width: 20%;
     height: 100%;
     float:right;
+    background-color:ghostwhite;
 }
 
 .globalChart{
     width:640px;
-    height:360px;
+    height:540px;
     border:solid;
     border-width:thin;
     border-color:aquamarine;

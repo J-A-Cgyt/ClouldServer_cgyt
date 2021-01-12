@@ -91,27 +91,47 @@
                                         全局状态显示区<br />
                                         各种图表
                                         <div id ="state_global_chart" class="globalChart" runat="server" style="display:none">
-                                            全局状态监控图表 设备状态
-                                            <canvas id="cake_Global_State" width="16" height="9"></canvas> <!--饼图 设备状态总览-->
+                                            <h5>全局状态监控图表 设备状态</h5>
+                                            <canvas id="cake_Global_State"></canvas> <!--饼图 设备状态总览-->
                                         </div>
                                         <div id ="plan_global_chart" class="globalChart" runat="server" style="display:none">
-                                            全局计划监控图表 生产计划  <!--看来这个图的尺寸还是用专属DIV限制吧-->
-                                            <canvas id="line_Global_Plan" width="32" height="9"></canvas> <br /> <!--线图 产量与合格率-->
-                                            <canvas id="progress_Global_Plan" width="32" height="9"></canvas> <!--饼图 生产进度-->                                           
-                                            <!--<script> loadChartFromXML(); </script>-->
+                                            <h5>全局计划监控图表 生产计划</h5>  <!--看来这个图的尺寸还是用专属DIV限制吧-->
+                                            <div style="height:100%;width:65%;float:left"><canvas id="line_Global_Plan" width="110" height="75"></canvas> </div> <!--线图 产量与合格率-->
+                                            <div style="height:100%;width:35%;float:right"><canvas id="progress_Global_Plan" width="48" height="48"></canvas> </div> <!--饼图 生产进度-->                                           
+                                            <!--<script> loadChartFromXMLB(); </script>-->
                                         </div>
                                         <div id ="resource_global_chart" class="globalChart" runat="server" style="display:none">
-                                            全局资源监控图表 资源状态
+                                            <h5>全局资源监控图表 资源状态</h5>
+                                            <div style="height:50%;width:65%;"><canvas id="bar_Global_Resource"></canvas></div>
+                                            <div style="height:50%;width:65%;"><canvas id="line_Global_Resource"></canvas></div>
                                         </div>
                                         <div id ="except_global_chart" class="globalChart" runat="server" style="display:none">
                                             全局异常监控图表 异常监控
+                                            <ol id="expection" runat="server">
+                                                <li><a href="techStudy.aspx">异常1 详细信息：……</a></li>
+                                                <li><a href="techStudy.aspx">异常2 详细信息：……</a></li>
+                                                <li><a href="techStudy.aspx">异常3 详细信息：……</a></li>
+                                            </ol>
                                         </div>
                                     </div>
                                     <div class="ctrl">
                                         全局控制选项区<br />
                                         几个按钮
-                                        <div id ="state_global_ctrl" runat="server" style="display:none">
-                                            全局状态控制区域 设备状态
+                                        <div id ="state_global_ctrl" runat="server" style="display:none"> <!--看来内部的控件排布还是得用table 具体控制选项的内容还是需要等实际内容-->
+                                            全局状态控制区域 设备状态 <br />
+                                            <ul>
+                                                <li><asp:Button ID="Button1" runat="server" Text="控制选项1" /></li>
+                                                <li><asp:Button ID="Button2" runat="server" Text="控制选项2" /></li>
+                                                <li><asp:RadioButton ID="RadioButton1_1" runat="server" Text="模式A"/></li>
+                                                <li><asp:RadioButton ID="RadioButton1_2" runat="server" Text="模式B"/></li>
+                                                <li><asp:RadioButton ID="RadioButton1_3" runat="server" Text="模式C"/></li>                                            
+                                                <li><asp:DropDownList ID="DropDownList1" runat="server">
+                                                    <asp:ListItem Value="0">选项A</asp:ListItem>
+                                                    <asp:ListItem Value="1">选项B</asp:ListItem>
+                                                    <asp:ListItem Value="2">选项C</asp:ListItem>
+                                                    <asp:ListItem Value="3">选项D</asp:ListItem>
+                                                    </asp:DropDownList></li>
+                                            </ul>
                                         </div>
                                         <div id ="plan_global_ctrl" runat="server" style="display:none">
                                             全局计划控制区域 生产计划
@@ -180,7 +200,7 @@
          <!--放在这里似乎实现了相关的功能 局部刷新 updatePanel-->                                          
     </form>    
     <div class="foot">
-        这里是网页的尾部
+        这里是网页的尾部 powered by CGYT
     </div>
 </body>
 </html>
