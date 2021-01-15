@@ -106,7 +106,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="chartData\dataToShow.xml" />
-    <Content Include="chartData\mainPageChartData.xml" />
+    <Content Include="chartData\mainPageChartData.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -127,6 +129,38 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Images\AGV.jpg" />
+    <Content Include="Images\Bending machine.jpg" />
+    <Content Include="Images\camera Amoured.jpg" />
+    <Content Include="Images\camera 监控.jpg" />
+    <Content Include="Images\China satellite.jpg" />
+    <Content Include="Images\CNC.jpg" />
+    <Content Include="Images\Earth.jpg" />
+    <Content Include="Images\exchanger.jpg" />
+    <Content Include="Images\GJJS201903034_043.jpg" />
+    <Content Include="Images\industrial camera.jpg" />
+    <Content Include="Images\industrial PC.jpg" />
+    <Content Include="Images\industrial revolutnon1.jpg" />
+    <Content Include="Images\industrial revolutnon2.jpg" />
+    <Content Include="Images\industrial revolutnon3.jpg" />
+    <Content Include="Images\industrial robot.jpg" />
+    <Content Include="Images\mobile workstation.jpg" />
+    <Content Include="Images\PLC.jpg" />
+    <Content Include="Images\pressure senseor.jpg" />
+    <Content Include="Images\router small.jpg" />
+    <Content Include="Images\server type1.jpg" />
+    <Content Include="Images\server type2.jpg" />
+    <Content Include="Images\server type3.jpg" />
+    <Content Include="Images\servo motor.jpg" />
+    <Content Include="Images\ShanXi.jpg" />
+    <Content Include="Images\smartSensor.jpg" />
+    <Content Include="Images\workstation.jpg" />
+    <Content Include="Images\云纹.jpg" />
+    <Content Include="Images\字.png" />
+    <Content Include="Images\封面背景1.png" />
+    <Content Include="Images\急停.jpg" />
+    <Content Include="Images\急停.png" />
+    <Content Include="Images\暂停.png" />
     <Content Include="Login.aspx" />
     <Content Include="MainPage.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -254,9 +288,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>55715</DevelopmentServerPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50646/</IISUrl>
+          <IISUrl>http://localhost:50535/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

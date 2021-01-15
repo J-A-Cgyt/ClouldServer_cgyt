@@ -116,6 +116,15 @@ function loadXMLDoc() {
     xmlhttp.send();
 }
 
+//后台信息的获取干脆都用XML吧 AJAX 要ASP.NET干球
+function onFactorySel(a) {
+    alert('第' + a + '个工厂被选中');
+}
+
+function onWorkshopSel(a) {
+    alert('第' + a + '个车间被选中');
+}
+
 
 //mainpage中的chartjs画图====================================================================================================
 

@@ -1,12 +1,12 @@
 ﻿/* 没有加.的是元素选择 即该标签名的基本属性*/
 body {
     width:inherit;
-    height:1400px;
+    height:1200px;
     background-color:floralwhite;
 }
 
 li{
-    height:35px;
+    height:30px;
     font-family:'Microsoft YaHei';
     font-size:14px;
 }
@@ -19,7 +19,7 @@ li{
 
 .mainbody{
     width:100%;
-    height:1200px;
+    height:1000px;
 }
 
 .navigate{
@@ -62,6 +62,7 @@ li{
     height:33%;
     border:solid;
     border-color:coral;
+    text-align:center;
 }
 
 .stateAndControl{
@@ -84,10 +85,44 @@ li{
 }
 
 .globalChart{
-    width:640px;
-    height:540px;
+    width:600px;
+    height:450px;
     border:solid;
     border-width:thin;
     border-color:aquamarine;
     background-color:aquamarine;
+}
+
+.factoryTable{
+    width:95%;
+    height:35%;
+    margin:5px;
+    font-size:24px;
+    font-family:KaiTi;
+}
+
+.factoryTable td {
+    margin: 10px;
+    padding: 5px;
+    background-color: rgba(255, 158, 251, 0.60);
+    text-align: center;
+    transition-delay: 0.2s;
+    transition-duration: 0.3s;
+    transform: scale(0.9);
+    border:solid;
+    border-width:2px;
+    border-color:blueviolet;
+}
+
+.factoryTable td:hover {
+    transform: scale(1);
+    background-color: rgba(255, 158, 251, 0.9);
+    font-style:oblique;
+}
+
+.factoryInfo {
+    width: 90%;
+    height: 50%;
+    margin: 10px;
+    font-size: 20px
 }

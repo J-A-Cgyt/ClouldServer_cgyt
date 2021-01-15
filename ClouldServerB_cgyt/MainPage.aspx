@@ -150,7 +150,8 @@
                                         车间状态显示区<br />
                                         各种图表
                                         <div id ="state_area_chart" runat="server" style="display:none">
-                                            车间状态监控图表 设备状态
+                                            车间状态监控图表 设备状态 <br />
+                                            <img src="Images/CNC.jpg" style="width:100%;height:90%"/>
                                         </div>
                                         <div id ="plan_area_chart" runat="server" style="display:none">
                                             车间计划监控图表 生产计划
@@ -183,10 +184,39 @@
                             <div class="contentRight"> <!--右侧div，纵向划分为两行1用户权限下整个企业的生产状态 2选定车间状态-->
                                 <div class="areaSel">  <!--监控区域选择（区域主控-现场主控选择）-->
                                     工厂选择 <br />
+                                    <table class="factoryTable">
+                                        <tr>
+                                            <td onclick="onFactorySel(1)">工厂1</td>
+                                            <td onclick="onFactorySel(2)">工厂2</td>
+                                            <td onclick="onFactorySel(3)">工厂3</td>
+                                            <td onclick="onFactorySel(4)">工厂4</td>
+                                        </tr>
+                                        <tr>
+                                            <td onclick="onFactorySel(5)">工厂5</td>
+                                            <td onclick="onFactorySel(6)">工厂6</td>
+                                            <td onclick="onFactorySel(7)">工厂7</td>
+                                            <td onclick="onFactorySel(8)">工厂8</td>
+                                        </tr>
+                                    </table> <br />
                                     车间选择
+                                    <table class="factoryTable">
+                                        <tr>
+                                            <td onclick="onWorkshopSel(1)">车间1</td>
+                                            <td onclick="onWorkshopSel(2)">车间2</td>
+                                            <td onclick="onWorkshopSel(3)">车间3</td>
+                                            <td onclick="onWorkshopSel(4)">车间4</td>
+                                        </tr>
+                                        <tr>
+                                            <td onclick="onWorkshopSel(5)">车间5</td>
+                                            <td onclick="onWorkshopSel(6)">车间6</td>
+                                            <td onclick="onWorkshopSel(7)">车间7</td>
+                                            <td onclick="onWorkshopSel(8)">车间8</td>
+                                        </tr>
+                                    </table>
                                 </div>
                                 <div class="areaSel">
-                                    工厂信息：区域主控
+                                    工厂信息：区域主控<br />                                   
+                                    <textarea class="factoryInfo">此处记录单个工厂需要完成的任务，以区域主控中存储的信息为准</textarea>
                                 </div>
                                 <div class="areaSel">
                                     车间信息：现场主控 细化描述：现场主控的管辖范围最大为一个车间，最小为一条生产线 较大规模的车间可以按照任务分别使用多个现场主控进行配合管理
