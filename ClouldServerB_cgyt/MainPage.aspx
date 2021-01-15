@@ -19,7 +19,7 @@
 <body>
     <div class="header">
         <!--这里是头-->
-        <div style="float:left;width:30%;height:100%"><h3>工业云企业级监控平台</h3></div>
+        <div style="float:left;width:30%;height:100%"><h2>工业云企业级监控平台</h2></div>
         <div style="float:right;width:70%;height:100%">
             <!--账号密码区-->
             <ul class="headList">
@@ -27,6 +27,7 @@
                 <li>信息管理</li>
                 <li>头像</li>
                 <li>注销</li>
+                <li>注册</li>
             </ul>
         </div>
     </div> <br />
