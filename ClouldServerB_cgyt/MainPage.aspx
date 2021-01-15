@@ -18,17 +18,26 @@
 </head>
 <body>
     <div class="header">
-            这里是头
-    </div>
+        <!--这里是头-->
+        <div style="float:left;width:30%;height:100%"><h3>工业云企业级监控平台</h3></div>
+        <div style="float:right;width:70%;height:100%">
+            <!--账号密码区-->
+            <ul class="headList">
+                <li>用户名</li>
+                <li>信息管理</li>
+                <li>头像</li>
+                <li>注销</li>
+            </ul>
+        </div>
+    </div> <br />
     <form id="form1" runat="server">
-
         <!--要实现后台代码的局部更新看来这个是必须要有的 即使有scriptmanager仍然出发了pageload 这就说明局部更新也没啥乱用了-->
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <!--放在这里似乎实现了相关的功能，而且保证了CSS的稳定 局部刷新 updatePanel 暂时把这个东西撤回来吧-->
         <asp:UpdatePanel ID="UpdatePanel1" runat="server"><ContentTemplate> </ContentTemplate></asp:UpdatePanel>
         <div class="mainbody">
             <div class="navigate">
-                这里是导航区 <br />
+                <!--这里是导航区-->
                 <asp:TreeView ID="treeView_navigate" runat="server" BackColor="#CCCCCC" OnSelectedNodeChanged="treeView_navigate_SelectedNodeChanged" Width="100%" Height="100%" ImageSet="BulletedList2" ShowExpandCollapse="False" ExpandDepth="0">
                     <HoverNodeStyle Font-Underline="False" ForeColor="#CC9900" />
                     <LeafNodeStyle BackColor="Gray" Font-Size="12pt" HorizontalPadding="3px" VerticalPadding="3px" Width="100%" />
@@ -228,7 +237,7 @@
             </div>
         </div>
          <!--放在这里似乎实现了相关的功能 局部刷新 updatePanel-->                                          
-    </form>    
+    </form>
     <div class="foot">
         这里是网页的尾部 powered by CGYT
     </div>
