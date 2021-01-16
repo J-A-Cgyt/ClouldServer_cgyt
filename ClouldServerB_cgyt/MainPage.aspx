@@ -132,9 +132,9 @@
                                             <ul>
                                                 <li><asp:Button ID="Button1" runat="server" Text="控制选项1" /></li>
                                                 <li><asp:Button ID="Button2" runat="server" Text="控制选项2" /></li>
-                                                <li><asp:RadioButton ID="RadioButton1_1" runat="server" Text="模式A"/></li>
-                                                <li><asp:RadioButton ID="RadioButton1_2" runat="server" Text="模式B"/></li>
-                                                <li><asp:RadioButton ID="RadioButton1_3" runat="server" Text="模式C"/></li>                                            
+                                                <li><asp:RadioButton ID="RadioButton1_1" runat="server" Text="模式A" GroupName="Grp1" Checked="true"/></li>
+                                                <li><asp:RadioButton ID="RadioButton1_2" runat="server" Text="模式B" GroupName="Grp1" Checked="false"/></li>
+                                                <li><asp:RadioButton ID="RadioButton1_3" runat="server" Text="模式C" GroupName="Grp1" Checked="false"/></li>                                            
                                                 <li><asp:DropDownList ID="DropDownList1" runat="server">
                                                     <asp:ListItem Value="0">选项A</asp:ListItem>
                                                     <asp:ListItem Value="1">选项B</asp:ListItem>

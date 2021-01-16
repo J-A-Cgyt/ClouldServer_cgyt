@@ -4,16 +4,6 @@ body {
     height: 1200px;
     background-color: floralwhite;
 }
-
-li {
-    width: 100px;
-    height: 30px;
-    font-family: 'Microsoft YaHei';
-    font-size:20px;
-    float: left;
-    list-style-type: none;
-}
-
 /* 加.的是根据 class的值选择的 也称作类选择器 */
 .header{
     width:100%;
@@ -137,6 +127,20 @@ li {
     height:100%;
 }
 
+.headList li {
+    width: 120px;
+    height: 30px;
+    font-family: 'Microsoft YaHei';
+    font-size: 20px;
+    float: left;
+    list-style-type: none;
+    text-align: center;
+}
+
+.headList li:hover{
+    background-color:aqua;
+}
+
 /*#是根据ID选择style*/
 #form1 {
     
@@ -146,4 +150,6 @@ li {
     float:none;
     height:40px;
     width:100%;
+    font-size:14px;
 }
+
