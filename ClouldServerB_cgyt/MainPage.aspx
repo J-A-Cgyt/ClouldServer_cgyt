@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
     <title> 
         主页面的结构样本 
     </title> <!--title被显示在了浏览器的页面处-->
@@ -20,7 +21,7 @@
     <div class="header">
         <!--这里是头-->
         <div style="float:left;width:30%;height:100%"><h2>工业云企业级监控平台</h2></div>
-        <div style="float:right;width:70%;height:100%">
+        <div style="float:right;width:50%;height:100%">
             <!--账号密码区-->
             <ul class="headList">
                 <li>用户名</li>
@@ -68,7 +69,6 @@
                 </asp:TreeView>
             </div>
             <div class="contents">
-                这里是主要内容  不知为何 无法执行在MultiView内的脚本(script)<br />
                 <asp:MultiView ID="Contents" runat="server" ActiveViewIndex="0">
                     <asp:View ID="viewBis" runat="server">
                         <div class="viewdiv">
@@ -91,32 +91,29 @@
                     </asp:View>
                     <asp:View ID="viewControl" runat="server">
                         <div class="viewdiv">
-                            监控视图 <br />
-                            设计大头在此 <br />
-                            监控内容分为：物料（资源）、设备（状态）、生产（计划）<br />
+                            <h3>监控视图 <img src="icon/健康分析.png" class="iconA"/></h3>
+                            <!--设计大头在此 <br />
+                            监控内容分为：物料（资源）、设备（状态）、生产（计划）-->
                             <div class="contentLeft"> <!--左侧div，纵向划分为三行1用于选择具体显示的车间与厂区 2用于显示厂区的静态信息 3用于显示 div无法实现局部更新 除非使用JS用后台就得回发数据-->
                                 <div class="stateAndControl">                                
-                                    全局状态监控<br />
                                     <div class="stateDisp">
-                                        全局状态显示区<br />
-                                        各种图表
                                         <div id ="state_global_chart" class="globalChart" runat="server" style="display:none">
-                                            <h5>全局状态监控图表 设备状态</h5>
-                                            <canvas id="cake_Global_State"></canvas> <!--饼图 设备状态总览-->
+                                            <h5>全局状态监控图表 设备状态 <img src="icon/价格预测.png" class="iconA"/></h5>
+                                            <canvas id="cake_Global_State" width="3" height="1"></canvas> <!--饼图 设备状态总览-->
                                         </div>
                                         <div id ="plan_global_chart" class="globalChart" runat="server" style="display:none">
-                                            <h5>全局计划监控图表 生产计划</h5>  <!--看来这个图的尺寸还是用专属DIV限制吧-->
-                                            <div style="height:100%;width:65%;float:left"><canvas id="line_Global_Plan" width="110" height="75"></canvas> </div> <!--线图 产量与合格率-->
+                                            <h5>全局计划监控图表 生产计划 <img src="icon/生产排程.png"  class="iconA"/></h5>  <!--看来这个图的尺寸还是用专属DIV限制吧-->
+                                            <div style="height:100%;width:65%;float:left"><canvas id="line_Global_Plan" width="120" height="75"></canvas> </div> <!--线图 产量与合格率-->
                                             <div style="height:100%;width:35%;float:right"><canvas id="progress_Global_Plan" width="48" height="48"></canvas> </div> <!--饼图 生产进度-->                                           
                                             <!--<script> loadChartFromXMLB(); </script>-->
                                         </div>
                                         <div id ="resource_global_chart" class="globalChart" runat="server" style="display:none">
-                                            <h5>全局资源监控图表 资源状态</h5>
-                                            <div style="height:50%;width:65%;"><canvas id="bar_Global_Resource"></canvas></div>
-                                            <div style="height:50%;width:65%;"><canvas id="line_Global_Resource"></canvas></div>
+                                            <h5>全局资源监控图表 资源状态 <img src="icon/能源.png" class="iconA" /></h5>
+                                            <div style="height:100%;width:49%;float:left;"><canvas id="bar_Global_Resource" width="4" height="3"></canvas></div>
+                                            <div style="height:100%;width:49%;float:right;"><canvas id="line_Global_Resource" width="4" height="3"></canvas></div>
                                         </div>
                                         <div id ="except_global_chart" class="globalChart" runat="server" style="display:none">
-                                            全局异常监控图表 异常监控
+                                            <h5>全局异常监控图表 异常监控 <img src="icon/生产.png" class="iconA"/></h5>
                                             <ol id="expection" runat="server">
                                                 <li><a href="techStudy.aspx">异常1 详细信息：……</a></li>
                                                 <li><a href="techStudy.aspx">异常2 详细信息：……</a></li>
@@ -125,17 +122,15 @@
                                         </div>
                                     </div>
                                     <div class="ctrl">
-                                        全局控制选项区<br />
-                                        几个按钮
                                         <div id ="state_global_ctrl" runat="server" style="display:none"> <!--看来内部的控件排布还是得用table 具体控制选项的内容还是需要等实际内容-->
                                             全局状态控制区域 设备状态 <br />
                                             <ul>
-                                                <li><asp:Button ID="Button1" runat="server" Text="控制选项1" /></li>
-                                                <li><asp:Button ID="Button2" runat="server" Text="控制选项2" /></li>
+                                                <li><asp:Button ID="Button1_1" runat="server" Text="控制选项1" /></li>
+                                                <li><asp:Button ID="Button1_2" runat="server" Text="控制选项2" /></li>
                                                 <li><asp:RadioButton ID="RadioButton1_1" runat="server" Text="模式A" GroupName="Grp1" Checked="true"/></li>
                                                 <li><asp:RadioButton ID="RadioButton1_2" runat="server" Text="模式B" GroupName="Grp1" Checked="false"/></li>
                                                 <li><asp:RadioButton ID="RadioButton1_3" runat="server" Text="模式C" GroupName="Grp1" Checked="false"/></li>                                            
-                                                <li><asp:DropDownList ID="DropDownList1" runat="server">
+                                                <li><asp:DropDownList ID="DropDownList1_1" runat="server">
                                                     <asp:ListItem Value="0">选项A</asp:ListItem>
                                                     <asp:ListItem Value="1">选项B</asp:ListItem>
                                                     <asp:ListItem Value="2">选项C</asp:ListItem>
@@ -145,9 +140,23 @@
                                         </div>
                                         <div id ="plan_global_ctrl" runat="server" style="display:none">
                                             全局计划控制区域 生产计划
+                                            <ul>
+                                                <li><input id="Button2_1" type="button" value="计划控制A" /></li>
+                                                <li><input id="Button2_2" type="button" value="计划控制B" /></li>
+                                                <li style="height:auto;margin-bottom:16px;"><asp:ListBox ID="ListBox2_1" runat="server">
+                                                    <asp:ListItem Value="0">生产计划1</asp:ListItem>
+                                                    <asp:ListItem Value="1">生产计划2</asp:ListItem>
+                                                    <asp:ListItem Value="2">生产计划3</asp:ListItem>
+                                                    <asp:ListItem Value="3">生产计划4</asp:ListItem>
+                                                    </asp:ListBox></li>
+                                                <li><asp:Button ID="Button2_3" runat="server" Text="计划详细信息" /></li>
+                                            </ul>
                                         </div>
                                         <div id ="resource_global_ctrl" runat="server" style="display:none">
                                             全局资源控制区域 资源状态
+                                            <ul>
+                                                <li></li>
+                                            </ul>
                                         </div>
                                         <div id ="except_global_ctrl" runat="server" style="display:none">
                                             全局异常控制区域 异常监控
@@ -155,13 +164,10 @@
                                     </div>
                                 </div>
                                 <div class="stateAndControl">
-                                    车间状态监控<br />
                                     <div class="stateDisp">
-                                        车间状态显示区<br />
-                                        各种图表
                                         <div id ="state_area_chart" runat="server" style="display:none">
                                             车间状态监控图表 设备状态 <br />
-                                            <img src="Images/CNC.jpg" style="width:100%;height:90%"/>
+                                            <img src="Images/CNC.jpg" style="width:90%;height:90%"/>
                                         </div>
                                         <div id ="plan_area_chart" runat="server" style="display:none">
                                             车间计划监控图表 生产计划
@@ -174,8 +180,6 @@
                                         </div>
                                     </div>
                                     <div class="ctrl">
-                                        车间控制选项区<br />
-                                        几个按钮
                                         <div id ="state_area_ctrl" runat="server" style="display:none">
                                             车间状态控制区域 设备状态
                                         </div>
@@ -193,7 +197,7 @@
                             </div>        
                             <div class="contentRight"> <!--右侧div，纵向划分为两行1用户权限下整个企业的生产状态 2选定车间状态-->
                                 <div class="areaSel">  <!--监控区域选择（区域主控-现场主控选择）-->
-                                    工厂选择 <br />
+                                     工厂选择
                                     <table class="factoryTable">
                                         <tr>
                                             <td onclick="onFactorySel(1)">工厂1</td>
@@ -207,8 +211,8 @@
                                             <td onclick="onFactorySel(7)">工厂7</td>
                                             <td onclick="onFactorySel(8)">工厂8</td>
                                         </tr>
-                                    </table> <br />
-                                    车间选择
+                                    </table>
+                                   车间选择
                                     <table class="factoryTable">
                                         <tr>
                                             <td onclick="onWorkshopSel(1)">车间1</td>
@@ -225,11 +229,12 @@
                                     </table>
                                 </div>
                                 <div class="areaSel">
-                                    工厂信息：区域主控<br />                                   
+                                    <img src="icon/工厂.png" style="width:30px;height:30px;transform:translateY(30%);"/><span style="font-size:20px">工厂信息：区域主控</span><br />              
                                     <textarea class="factoryInfo">此处记录单个工厂需要完成的任务，以区域主控中存储的信息为准</textarea>
                                 </div>
                                 <div class="areaSel">
-                                    车间信息：现场主控 细化描述：现场主控的管辖范围最大为一个车间，最小为一条生产线 较大规模的车间可以按照任务分别使用多个现场主控进行配合管理
+                                    <img src="icon/车间.png" style="width:30px;height:30px;transform:translateY(30%);"/><span style="font-size:20px">车间信息：现场主控</span><br /> 
+                                    <textarea class="factoryInfo"> 细化描述：现场主控的管辖范围最大为一个车间，最小为一条生产线 较大规模的车间可以按照任务分别使用多个现场主控进行配合管理</textarea>
                                 </div>
                             </div>
                         </div>                                  

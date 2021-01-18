@@ -4,6 +4,13 @@ body {
     height: 1200px;
     background-color: floralwhite;
 }
+
+h5{
+    height:50px;
+    margin-top:0px;
+    margin-bottom:10px;
+    transform:translateY(-20px);
+}
 /* 加.的是根据 class的值选择的 也称作类选择器 */
 .header{
     width:100%;
@@ -41,13 +48,13 @@ body {
 
 .contentLeft{
     width:65%;
-    height:100%;
+    height:91.7%;
     float:left;
 }
 
 .contentRight {
     width: 35%;
-    height: 100%;
+    height: 92%;
     float:right;
     background-color:aliceblue;
 }
@@ -63,7 +70,8 @@ body {
 .stateAndControl{
     width:100%;
     height:50%;
-    background-color:ivory
+    background-color:ivory;
+    border:2px solid black;
 }
 
 .stateDisp{
@@ -76,16 +84,22 @@ body {
     width: 20%;
     height: 100%;
     float:right;
-    background-color:ghostwhite;
+    background-color:AppWorkspace;
+}
+
+.ctrl li {
+    float: none;
+    height: 40px;
+    width: 100%;
+    font-size: 16px;
+    list-style-type: none;
 }
 
 .globalChart{
-    width:600px;
-    height:450px;
+    width:100%;
+    height:100%;
     border:solid;
     border-width:thin;
-    border-color:aquamarine;
-    background-color:aquamarine;
 }
 
 .factoryTable{
@@ -125,6 +139,7 @@ body {
 .headList{
     width:100%;
     height:100%;
+    text-align:right;
 }
 
 .headList li {
@@ -141,15 +156,21 @@ body {
     background-color:aqua;
 }
 
+.iconA{
+    width:50px;
+    height:50px;
+    transform:translateY(20px);
+}
+
 /*#是根据ID选择style*/
 #form1 {
     
 }
 
-#form1 li{
+#expection li{
     float:none;
     height:40px;
     width:100%;
-    font-size:14px;
+    font-size:20px;
 }
 

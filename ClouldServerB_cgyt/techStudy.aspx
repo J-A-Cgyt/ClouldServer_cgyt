@@ -5,6 +5,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!--为了试验bootstrap添加的代码 class为container的div似乎出现了一些变化-->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+
     <title> 这是用来试验各种功能与技术的网页 </title>     
     
     <script type="text/javascript">
@@ -40,7 +45,7 @@
     <form id="form1" runat="server">
         <h1> 这里用来试验各种HTML与ASP.NET还有 Javascript的各种技术 </h1>
         <p> 测试通过的各种交互、数据刷新等技术可以应用于正式的设计网页中 </p>
-        <div>
+        <div class="container">
             <p> 这里是放置相关控件和元素的主要div 布局就不在这个文件中尝试了 </p> <br />
             <p id="demo"> 这是一个demo段落 </p>    
 
